@@ -20,17 +20,32 @@ namespace Controllers;
  * @license  MIT http://
  * @link     http://
  */
+
+use \Dao\Products\Products as ProductsDao;
+use \Dao\Products\Categories as CategoriesDao;
+use \Views\Renderer as Renderer;
+use \Utilities\Site as Site;
+
 class Index extends PublicController
 {
-    /**
-     * Index run method
-     *
-     * @return void
-     */
-    public function run() :void
+    public function run(): void
     {
-        $viewData = array();
-        \Views\Renderer::render("index", $viewData);
+        // Se agregan los archivos CSS 
+        Site::addLink("public/css/Pages/products.css");
+        Site::addLink("public/css/Pages/slider.css");
+        Site::addLink("public/css/Pages/ads.css");
+
+        // Array que contendrá los datos a enviar a la vista
+        $viewData = [];
+
+        // Obtiene los productos en oferta diaria desde la base de datos
+        $viewData["productsOnSale"] = ProductsDao::getDailyDeals();
+
+        // Obtiene un producto destacado por cada categoría
+        $viewData["featuredByCategory"] = CategoriesDao::getOneProductPerCategory();
+
+        // Renderiza la vista y pasa los datos recopilados
+        Renderer::render("pages/index", $viewData);
     }
 }
 ?>

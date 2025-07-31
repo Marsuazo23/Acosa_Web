@@ -1,0 +1,57 @@
+.about-us {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.about-image {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.welcome-text {
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+}
+
+.info-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 30%;
+  background-color: #bc653d;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.card h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.card p {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}

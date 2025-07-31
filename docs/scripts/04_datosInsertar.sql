@@ -248,7 +248,7 @@
   (42, 'admin', 'Controllers\\Modules\\Transactions\\Transaction', 'ACT', '2030-12-31 00:00:00'),
   (43, 'admin', 'Controllers\Modules\Orders\Orders', 'ACT', '2030-12-31 00:00:00'),
   (44, 'admin', 'Controllers\Modules\Orders\Orders\update', 'ACT', '2030-12-31 00:00:00'),
-  (44, 'admin', 'Controllers\Modules\Orders\Order', 'ACT', '2030-12-31 00:00:00');
+  (45, 'admin', 'Controllers\Modules\Orders\Order', 'ACT', '2030-12-31 00:00:00');
 
 
 

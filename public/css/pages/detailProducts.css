@@ -1,0 +1,123 @@
+.product-detail {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    gap: 2rem;
+    align-items: flex-start;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.product-detail img {
+    flex: 0 1 45%;
+    max-width: 100%;      
+    height: auto;         
+    border-radius: 10px;
+    object-fit: cover;
+    max-height: 400px;
+    min-width: 270px;     
+}
+
+.product-detail > div {
+    flex: 1 1 45%;
+    min-width: 260px;     
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-detail p {
+    font-size: 1.4rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.product-detail .price {
+    font-size: 1.5rem;
+    color: #bc653d;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.product-detail .quantity {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 1.5rem;
+    border: 1px solid #ddd;   
+    padding: 0.5rem 1rem;      
+    border-radius: 8px;     
+    background-color: #f9f9f9;
+}
+
+.product-detail .btn-quantity {
+    border: none;
+    padding: 0.3rem 0.8rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    user-select: none;
+    background-color: #bc653d;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.product-detail .btn-quantity:hover {
+    background-color: #9c4e2c;
+}
+
+.product-detail .quantity input {
+    width: 50px;
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.2rem;
+    background-color: white;
+}
+
+.product .add-to-cart {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #bc653d;
+    color: white;
+    font-weight: 700;
+    border: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    align-self: center;
+    min-width: 180px;
+    box-shadow: 0 3px 8px rgba(188, 101, 61, 0.6);
+}
+
+.product .add-to-cart:hover {
+    background-color: #9c4e2c;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: 10px;
+}
+
+.discounted-price {
+  color: #d62828;
+  font-weight: bold;
+}
+
+.stock-message {
+    color: red;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    display: none;
+}

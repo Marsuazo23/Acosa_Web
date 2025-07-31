@@ -1,4 +1,4 @@
--- Active: 1753393130641@@127.0.0.1@3306@acosa
+-- Active: 1753935408644@@127.0.0.1@3306@acosa
 
 --Tabla de Carretilla - Usuario logueado
 CREATE TABLE
@@ -24,7 +24,7 @@ CREATE TABLE
         `crrprc` decimal(12, 2) NOT NULL,
         `crrfching` datetime NOT NULL,
         PRIMARY KEY (`anoncod`, `productId`),
-        KEY `productId_idx` (`productId`)
+        KEY `productId_idx` (`productId`),
         CONSTRAINT `carretillaanon_prd_key` FOREIGN KEY (`productId`) REFERENCES `products` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION
     );
 
