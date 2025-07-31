@@ -1,4 +1,4 @@
--- Active: 1753935408644@@127.0.0.1@3306@acosa
+-- Active: 1753393130641@@127.0.0.1@3306@acosa
 
 --Tabla de Carretilla - Usuario logueado
 CREATE TABLE
