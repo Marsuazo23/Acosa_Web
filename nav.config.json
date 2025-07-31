@@ -33,9 +33,54 @@
   ],
   "private": [
     {
-      "id":"Menu_PaymentCheckout",
-      "nav_url": "index.php?page=Checkout_Checkout",
-      "nav_label": "Carretilla de Compra"
+      "id": "Menu_Categories",
+      "nav_url": "index.php?page=Modules-Categories-Categories",
+      "nav_label": "Gestión de Categorías"
+    },
+    {
+      "id": "Menu_Funciones",
+      "nav_url": "index.php?page=Modules-Funciones-Funciones",
+      "nav_label": "Funciones del Sistema"
+    },
+    {
+      "id": "Menu_FuncioneRoles",
+      "nav_url": "index.php?page=Modules-FuncionesRoles-FuncionesRoles",
+      "nav_label": "Funciones y Roles"
+    },
+    {
+      "id": "Menu_Orders",
+      "nav_url": "index.php?page=Modules-Orders-Orders",
+      "nav_label": "Gestión de Órdenes"
+    },
+    {
+      "id": "Menu_Products",
+      "nav_url": "index.php?page=Modules-Products-Products",
+      "nav_label": "Catálogo de Productos"
+    },
+    {
+      "id": "Menu_Roles",
+      "nav_url": "index.php?page=Modules-Roles-Roles",
+      "nav_label": "Gestión de Roles"
+    },
+    {
+      "id": "Menu_RolesUsuarios",
+      "nav_url": "index.php?page=Modules-RolesUsuarios-RolesUsuarios",
+      "nav_label": "Asignación de Roles a Usuarios"
+    },
+    {
+      "id": "Menu_Sales",
+      "nav_url": "index.php?page=Modules-Sales-Sales",
+      "nav_label": "Promociones y Ofertas"
+    },
+    {
+      "id": "Menu_Transactions",
+      "nav_url": "index.php?page=Modules-Transactions-Transactions",
+      "nav_label": "Historial de Transacciones"
+    },
+    {
+      "id": "Menu_Usuarios",
+      "nav_url": "index.php?page=Modules-Usuarios-Usuarios",
+      "nav_label": "Gestión de Usuarios"
     }
   ]
 }
