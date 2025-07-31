@@ -1,3 +1,4 @@
+-- Active: 1753393130641@@127.0.0.1@3306@acosa
 CREATE TABLE
     `usuario` (
         `usercod` bigint(10) NOT NULL AUTO_INCREMENT,
@@ -21,56 +22,48 @@ CREATE TABLE
         )
     ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
 
-CREATE TABLE
+CREATE TABLE 
     `roles` (
-        `rolescod` varchar(128) NOT NULL,
-        `rolesdsc` varchar(45) DEFAULT NULL,
-        `rolesest` char(3) DEFAULT NULL,
-        PRIMARY KEY (`rolescod`)
-    ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+        `roleid` INT AUTO_INCREMENT PRIMARY KEY,
+        `rolescod` VARCHAR(128) NOT NULL,
+        `rolesdsc` VARCHAR(45) DEFAULT NULL,
+        `rolesest` CHAR(3) DEFAULT NULL,
+        UNIQUE KEY `uk_rolescod` (`rolescod`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE
+CREATE TABLE 
     `roles_usuarios` (
-        `usercod` bigint(10) NOT NULL,
-        `rolescod` varchar(128) NOT NULL,
-        `roleuserest` char(3) DEFAULT NULL,
-        `roleuserfch` datetime DEFAULT NULL,
-        `roleuserexp` datetime DEFAULT NULL,
-        PRIMARY KEY (`usercod`, `rolescod`),
-        KEY `rol_usuario_key_idx` (`rolescod`),
+        `roleuserid` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `usercod` BIGINT(10) NOT NULL,
+        `rolescod` VARCHAR(128) NOT NULL,
+        `roleuserest` CHAR(3) DEFAULT NULL,
+        `roleuserfch` DATETIME DEFAULT NULL,
+        `roleuserexp` DATETIME DEFAULT NULL,
+        KEY `idx_rolescod` (`rolescod`),
+        KEY `idx_usercod` (`usercod`),
         CONSTRAINT `rol_usuario_key` FOREIGN KEY (`rolescod`) REFERENCES `roles` (`rolescod`) ON DELETE NO ACTION ON UPDATE NO ACTION,
         CONSTRAINT `usuario_rol_key` FOREIGN KEY (`usercod`) REFERENCES `usuario` (`usercod`) ON DELETE NO ACTION ON UPDATE NO ACTION
-    ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE
+CREATE TABLE 
     `funciones` (
-        `fncod` varchar(255) NOT NULL,
-        `fndsc` varchar(255) DEFAULT NULL,
-        `fnest` char(3) DEFAULT NULL,
-        `fntyp` char(3) DEFAULT NULL,
-        PRIMARY KEY (`fncod`)
-    ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+        `fnid` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `fncod` VARCHAR(255) NOT NULL,
+        `fndsc` VARCHAR(255) DEFAULT NULL,
+        `fnest` CHAR(3) DEFAULT NULL,
+        `fntyp` CHAR(3) DEFAULT NULL,
+        UNIQUE KEY `uk_fncod` (`fncod`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE
+CREATE TABLE 
     `funciones_roles` (
-        `rolescod` varchar(128) NOT NULL,
-        `fncod` varchar(255) NOT NULL,
-        `fnrolest` char(3) DEFAULT NULL,
-        `fnexp` datetime DEFAULT NULL,
-        PRIMARY KEY (`rolescod`, `fncod`),
-        KEY `rol_funcion_key_idx` (`fncod`),
+        `fnrolid` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `rolescod` VARCHAR(128) NOT NULL,
+        `fncod` VARCHAR(255) NOT NULL,
+        `fnrolest` CHAR(3) DEFAULT NULL,
+        `fnexp` DATETIME DEFAULT NULL,
+        KEY `idx_rolescod` (`rolescod`),
+        KEY `idx_fncod` (`fncod`),
         CONSTRAINT `funcion_rol_key` FOREIGN KEY (`rolescod`) REFERENCES `roles` (`rolescod`) ON DELETE NO ACTION ON UPDATE NO ACTION,
         CONSTRAINT `rol_funcion_key` FOREIGN KEY (`fncod`) REFERENCES `funciones` (`fncod`) ON DELETE NO ACTION ON UPDATE NO ACTION
-    ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-
-CREATE TABLE
-    `bitacora` (
-        `bitacoracod` int(11) NOT NULL AUTO_INCREMENT,
-        `bitacorafch` datetime DEFAULT NULL,
-        `bitprograma` varchar(255) DEFAULT NULL,
-        `bitdescripcion` varchar(255) DEFAULT NULL,
-        `bitobservacion` mediumtext,
-        `bitTipo` char(3) DEFAULT NULL,
-        `bitusuario` bigint(18) DEFAULT NULL,
-        PRIMARY KEY (`bitacoracod`)
-    ) ENGINE = InnoDB AUTO_INCREMENT = 10 DEFAULT CHARSET = utf8;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
