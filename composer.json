@@ -1,5 +1,8 @@
 {
     "autoload": {
       "psr-4": {"":"src/"}
+    },
+    "require": {
+        "paypal/paypal-checkout-sdk": "^1.0"
     }
 }
