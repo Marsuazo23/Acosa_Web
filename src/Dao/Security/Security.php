@@ -47,17 +47,16 @@ class Security extends \Dao\Table
         return self::obtenerRegistros($sqlstr, array());
     }
 
-    static public function newUsuario($email, $password)
+    static public function newUsuario($email, $password, $username = "John Doe")
     {
         if (!\Utilities\Validators::IsValidEmail($email)) {
             throw new Exception("Correo no es válido");
         }
         if (!\Utilities\Validators::IsValidPassword($password)) {
-            throw new Exception("Contraseña debe ser almenos 8 caracteres, 1 número, 1 mayúscula, 1 símbolo especial");
+            throw new Exception("Contraseña debe ser al menos 8 caracteres, 1 número, 1 mayúscula, 1 símbolo especial");
         }
 
         $newUser = self::_usuarioStruct();
-        //Tratamiento de la Contraseña
         $hashedPassword = self::_hashPassword($password);
 
         unset($newUser["usercod"]);
@@ -65,12 +64,12 @@ class Security extends \Dao\Table
         unset($newUser["userpswdchg"]);
 
         $newUser["useremail"] = $email;
-        $newUser["username"] = "John Doe";
+        $newUser["username"] = $username; 
         $newUser["userpswd"] = $hashedPassword;
         $newUser["userpswdest"] = Estados::ACTIVO;
-        $newUser["userpswdexp"] = date('Y-m-d', time() + 7776000);  //(3*30*24*60*60) (m d h mi s)
+        $newUser["userpswdexp"] = date('Y-m-d', time() + 7776000);
         $newUser["userest"] = Estados::ACTIVO;
-        $newUser["useractcod"] = hash("sha256", $email.time());
+        $newUser["useractcod"] = hash("sha256", $email . time());
         $newUser["usertipo"] = UsuarioTipo::PUBLICO;
 
         $sqlIns = "INSERT INTO `usuario` (`useremail`, `username`, `userpswd`,
@@ -82,7 +81,6 @@ class Security extends \Dao\Table
             now(), :usertipo);";
 
         return self::executeNonQuery($sqlIns, $newUser);
-
     }
 
     static public function getUsuarioByEmail($email)

@@ -2,6 +2,8 @@
 <div class="col-3">
   <form action="{{url}}" method="get" id="pagination">
     <input type="hidden" name="page" value="{{page}}" />
+    <input type="hidden" name="categoryId" value="{{categoryId}}" />
+    <input type="hidden" name="name" value="{{categoryName}}" />
     <select name="itemsPerPage" id="itemsPerPage">
       <option value="1" {{itemsPerPage_1}}>1</option>
       <option value="5" {{itemsPerPage_5}}>5</option>
