@@ -132,16 +132,18 @@
 
 
 --USUARIOS, ROLES, FUNCIONES
+  --Crear usuario
+  INSERT INTO `usuario` (`usercod`, `useremail`, `username`, `userpswd`, `userfching`, `userpswdest`, `userpswdexp`, `userest`, `useractcod`, `userpswdchg`, `usertipo`) VALUES 
+  (1, 'admin123@gmail.com', 'Administrador', '$2y$10$41J38/H.tknvrlkwGxyW.OYsjjjqYw0wQ1I3xQiinux76D8.FsW0S', '2025-07-31 23:11:18', 'ACT', '2025-10-29 00:00:00', 'ACT', '8eb76952209b5f5cecf5eaaae2d5acb060472cfc6e548e850c1bdfec55cb942a', '2025-07-31 23:11:18', 'ADM');
+  --Contraseña: Contra123/
+
   --Definir los roles
   INSERT INTO `roles` (`roleid`, `rolescod`, `rolesdsc`, `rolesest`) VALUES
   (1, 'admin', 'administrador', 'ACT');
 
-
-  --Debe haber un usuario creado en la tabla de Usuario, se identifica mediante el usercod
   --Se inserta a roles_usuario, especificando el rol que tiene
   INSERT INTO `roles_usuarios` (`roleuserid`, `usercod`, `rolescod`, `roleuserest`, `roleuserfch`, `roleuserexp`) VALUES
   (1, 1, 'admin', 'ACT', '2025-07-24 14:22:00', '2025-08-26 14:22:00' );
-
 
   --Datos en la tabla de Funciones
   INSERT INTO `funciones` (`fnid`, `fncod`, `fndsc`, `fnest`, `fntyp`) VALUES
