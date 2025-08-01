@@ -11,6 +11,28 @@ class Cart extends \Dao\Table
      */
     public static function addToCarretilla($usercod, $productId, $quantity)
     {
+        $sqlStock = "SELECT productStock FROM products WHERE productId = :productId";
+        $stockResult = self::obtenerUnRegistro($sqlStock, ["productId" => $productId]);
+        $stockActual = $stockResult ? intval($stockResult["productStock"]) : 0;
+
+        $sqlQtyUser = "SELECT crrctd FROM carretilla WHERE usercod = :usercod AND productId = :productId";
+        $qtyUserResult = self::obtenerUnRegistro($sqlQtyUser, ["usercod" => $usercod, "productId" => $productId]);
+        $cantidadActualUsuario = $qtyUserResult ? intval($qtyUserResult["crrctd"]) : 0;
+
+        $sqlReservado = "SELECT COALESCE(SUM(crrctd), 0) as totalReservado FROM (
+                            SELECT crrctd FROM carretilla WHERE productId = :productId
+                            UNION ALL
+                            SELECT crrctd FROM carretillaanon WHERE productId = :productId
+                        ) AS todosLosCarritos";
+        $reservadoResult = self::obtenerUnRegistro($sqlReservado, ["productId" => $productId]);
+        $totalReservado = $reservadoResult ? intval($reservadoResult["totalReservado"]) : 0;
+
+        $disponible = $stockActual - ($totalReservado - $cantidadActualUsuario);
+
+        if (($cantidadActualUsuario + $quantity) > $disponible) {
+            return false;
+        }
+
         $sql = "INSERT INTO carretilla (usercod, productId, crrctd, crrprc, crrfching)
                 VALUES (:usercod, :productId, :crrctd, 
                     (SELECT 
@@ -24,6 +46,7 @@ class Cart extends \Dao\Table
                 ON DUPLICATE KEY UPDATE 
                     crrctd = crrctd + VALUES(crrctd),
                     crrfching = NOW();";
+
         return self::executeNonQuery($sql, [
             "usercod" => $usercod,
             "productId" => $productId,
@@ -34,6 +57,28 @@ class Cart extends \Dao\Table
     /* Agrega un producto al carrito anónimo (usuario no autenticado). */
     public static function addToCarretillaAnon($anoncod, $productId, $quantity)
     {
+        $sqlStock = "SELECT productStock FROM products WHERE productId = :productId";
+        $stockResult = self::obtenerUnRegistro($sqlStock, ["productId" => $productId]);
+        $stockActual = $stockResult ? intval($stockResult["productStock"]) : 0;
+
+        $sqlQtyAnon = "SELECT crrctd FROM carretillaanon WHERE anoncod = :anoncod AND productId = :productId";
+        $qtyAnonResult = self::obtenerUnRegistro($sqlQtyAnon, ["anoncod" => $anoncod, "productId" => $productId]);
+        $cantidadActualAnon = $qtyAnonResult ? intval($qtyAnonResult["crrctd"]) : 0;
+
+        $sqlReservado = "SELECT COALESCE(SUM(crrctd), 0) as totalReservado FROM (
+                            SELECT crrctd FROM carretilla WHERE productId = :productId
+                            UNION ALL
+                            SELECT crrctd FROM carretillaanon WHERE productId = :productId
+                        ) AS todosLosCarritos";
+        $reservadoResult = self::obtenerUnRegistro($sqlReservado, ["productId" => $productId]);
+        $totalReservado = $reservadoResult ? intval($reservadoResult["totalReservado"]) : 0;
+
+        $disponible = $stockActual - ($totalReservado - $cantidadActualAnon);
+
+        if (($cantidadActualAnon + $quantity) > $disponible) {
+            return false; 
+        }
+
         $sql = "INSERT INTO carretillaanon (anoncod, productId, crrctd, crrprc, crrfching)
                 VALUES (:anoncod, :productId, :crrctd,
                     (SELECT 
@@ -47,6 +92,7 @@ class Cart extends \Dao\Table
                 ON DUPLICATE KEY UPDATE 
                     crrctd = crrctd + VALUES(crrctd),
                     crrfching = NOW();";
+
         return self::executeNonQuery($sql, [
             "anoncod" => $anoncod,
             "productId" => $productId,

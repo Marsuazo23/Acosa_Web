@@ -3,6 +3,7 @@ namespace Controllers\Checkout;
 
 use Controllers\PublicController;
 use Dao\Cart\Cart;
+use Dao\Products\Products as ProductsDao;
 
 class UpdateQuantity extends PublicController
 {
@@ -67,11 +68,23 @@ class UpdateQuantity extends PublicController
          * - Si la acción es "decrease", restamos 1 pero nunca bajamos de 1.
          */
         $currentQty = $item["crrctd"];
+
+        // Obtener stock actual del producto
+        $product = ProductsDao::getProductById($productId);
+        $stockDisponible = $product ? intval($product["productStock"]) : 0;
+
+        if (isset($_SESSION["cartMessage"])) {
+            unset($_SESSION["cartMessage"]);
+        }
         if ($action === "increase") {
             $newQty = $currentQty + 1;
-        } else {
-            $newQty = max(1, $currentQty - 1); // Evita bajar de 1
-        }
+            if ($newQty > $stockDisponible) {
+                $_SESSION["cartMessage"] = "No puedes agregar más de $stockDisponible unidades. Stock disponible limitado.";
+                $newQty = $stockDisponible;
+            }
+            } else {
+                $newQty = max(1, $currentQty - 1); // Evita bajar de 1
+            }
 
         /**
          * 8. Actualizar la cantidad en la base de datos

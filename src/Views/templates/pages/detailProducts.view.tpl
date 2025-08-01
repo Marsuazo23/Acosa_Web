@@ -21,44 +21,44 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const buttons = document.querySelectorAll(".btn-quantity");
-    const input = document.getElementById("product-qty");
-    const stockMessage = document.getElementById("stock-message");
-    const max = parseInt(input.getAttribute("max"));
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".btn-quantity");
+  const input = document.getElementById("product-qty");
+  const stockMessage = document.getElementById("stock-message");
+  const addBtn = document.querySelector(".add-to-cart");
+  const cartCount = document.querySelector(".cart-count");
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const change = parseInt(button.getAttribute("data-change"));
-        let currentValue = parseInt(input.value);
-        const newValue = currentValue + change;
+  const maxStock = parseInt(input.getAttribute("max"));
 
-        if (newValue < 1) return;
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const change = parseInt(button.getAttribute("data-change"));
+      let currentValue = parseInt(input.value);
+      const newValue = currentValue + change;
 
-        if (newValue > max) {
-          stockMessage.style.display = "block";
-          setTimeout(() => {
-            stockMessage.style.display = "none";
-          }, 3000);
-          return;
-        }
+      if (newValue < 1) return;
 
-        input.value = newValue;
-        stockMessage.style.display = "none";
-      });
+      if (newValue > maxStock) {
+        stockMessage.style.display = "block";
+        setTimeout(() => {
+          stockMessage.style.display = "none";
+        }, 3000);
+        return;
+      }
+
+      input.value = newValue;
+      stockMessage.style.display = "none";
     });
   });
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const addBtn = document.querySelector(".add-to-cart");
-  const qtyInput = document.getElementById("product-qty");
-  const cartCount = document.querySelector(".cart-count");
 
   addBtn.addEventListener("click", function () {
     const productId = addBtn.getAttribute("data-productid");
-    const quantity = qtyInput.value;
+    const quantity = parseInt(input.value);
+
+    if (quantity > maxStock) {
+      alert("La cantidad seleccionada supera el stock disponible.");
+      return;
+    }
 
     fetch("index.php?page=Checkout-AddToCart", {
       method: "POST",
@@ -78,4 +78,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
 
