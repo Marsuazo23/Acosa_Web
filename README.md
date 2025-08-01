@@ -4,7 +4,7 @@ Simple PHP MVC OOP es un framework básico y sencillo de MVC diseñado para PHP 
 
 ## Instalación
 
-1. Ejecutar el comando `composer install` para instalar las dependencias.
+1. Ejecutar el comando `composer install` y `composer require paypal/paypal-checkout-sdk` para instalar las dependencias.
   - Nota: Si no tiene instalado composer en su computadora puede descargarlo desde el sitio web oficial [Composer](https://getcomposer.org/download/).
 2. Copiar y renombrar el archivo `renameTo_parameters.env` a `parameters.env` y configurar las variables de entorno.
 3. En el archivo `parameters.env` modificar la línea `BASE_DIR = ` por la ruta relativa de la carpeta de su proyecto en el servidor web.
@@ -18,6 +18,12 @@ Simple PHP MVC OOP es un framework básico y sencillo de MVC diseñado para PHP 
     - Ejemplo en LAMP
         - `BASE_DIR = mvc` si la ruta a la carpeta e su proyecto es `/var/www/html/mvc`
 4. Correr en el Browser la ruta `http://localhost/{BASE_DIR}/index.php` donde `{BASE_DIR}` es el nombre de la carpeta de su proyecto. Nota si su web server corre en otro puerto recuerde agregar el puerto en la ruta. Ejemplo: `http://localhost:8080/{BASE_DIR}/index.php`
+
+## Variables de entorno
+
+FONT_AWESOME_KIT = https://kit.fontawesome.com/f41481edd3.js
+PAYPAL_CLIENT_ID = ATlL43fstjpH5B9q0tJqpUdCkDCQYWarMrhRX4u-xjl_Anq8jOvB7lUl2KrJpm1jz56qTl0DyeER6HIy
+PAYPAL_CLIENT_SECRET = EM3UBmtweWn5eaUTQXV82vSEQE0n9DTdAnlmnVlj4LxEqaSjSiXS_NdkogmbxZR5dmBXKPJiRZfK2iN9
 
 ## Estructura de directorios
 
