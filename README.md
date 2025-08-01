@@ -8,6 +8,8 @@ Simple PHP MVC OOP es un framework básico y sencillo de MVC diseñado para PHP 
   - Nota: Si no tiene instalado composer en su computadora puede descargarlo desde el sitio web oficial [Composer](https://getcomposer.org/download/).
 2. Copiar y renombrar el archivo `renameTo_parameters.env` a `parameters.env` y configurar las variables de entorno.
 3. En el archivo `parameters.env` modificar la línea `BASE_DIR = ` por la ruta relativa de la carpeta de su proyecto en el servidor web.
+    - Para este proyecto debe quedar así: 
+        - `BASE_DIR = acosa/acosa`
     - Ejemplo en WAMP:
         - `BASE_DIR = SimplePHP_MVC_OOP` si la ruta a la carpeta e su proyecto es `C:\wamp64\www\SimplePHP_MVC_OOP`
     - Ejemplo en XAMPP:
