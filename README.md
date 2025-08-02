@@ -2,6 +2,14 @@
 
 Simple PHP MVC OOP es un framework básico y sencillo de MVC diseñado para PHP 7.4 y versiones posteriores. Fue desarrollado a lo largo de varios períodos académicos en el contexto de la asignatura de Desarrollo de Negocios Web. El propósito de este framework es proporcionar una base para la creación de aplicaciones web en PHP, haciendo uso del patrón de diseño Modelo-Vista-Controlador (MVC) y la programación orientada a objetos (OOP). Esto brinda la oportunidad a los estudiantes de comprender cada uno de los componentes del MVC y cómo interactúan entre sí. El diseño se encuentra en un nivel de abstracción muy elemental, lo que permite adquirir los fundamentos y comprender cómo operan los componentes de un MVC, facilitando su comprensión y aplicabilidad en otros frameworks MVC.
 
+## Requisitos del sistema
+1. PHP: Versión 7.4 o superior.
+2. MySQL: Versión 8.2.0.
+3. Composer: Para la gestión de dependencias.
+4. Servidor web compatible (Apache, Nginx, etc.).
+
+Instalación
+
 ## Instalación
 
 1. Ejecutar el comando `composer install` y `composer require paypal/paypal-checkout-sdk` para instalar las dependencias.
